@@ -15,9 +15,9 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 
-	"github.com/free5gc/ausf/logger"
-	"github.com/free5gc/ausf/service"
 	"github.com/free5gc/version"
+	"github.com/nycu-ucr/ausf/logger"
+	"github.com/nycu-ucr/ausf/service"
 )
 
 var AUSF = &service.AUSF{}

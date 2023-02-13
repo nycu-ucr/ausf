@@ -12,17 +12,17 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 
-	"github.com/free5gc/ausf/consumer"
-	ausf_context "github.com/free5gc/ausf/context"
-	"github.com/free5gc/ausf/factory"
-	"github.com/free5gc/ausf/logger"
-	"github.com/free5gc/ausf/ueauthentication"
-	"github.com/free5gc/ausf/util"
-	"github.com/free5gc/http2_util"
-	"github.com/free5gc/logger_util"
-	openApiLogger "github.com/free5gc/openapi/logger"
 	"github.com/free5gc/path_util"
 	pathUtilLogger "github.com/free5gc/path_util/logger"
+	"github.com/nycu-ucr/ausf/consumer"
+	ausf_context "github.com/nycu-ucr/ausf/context"
+	"github.com/nycu-ucr/ausf/factory"
+	"github.com/nycu-ucr/ausf/logger"
+	"github.com/nycu-ucr/ausf/ueauthentication"
+	"github.com/nycu-ucr/ausf/util"
+	"github.com/nycu-ucr/http2_util"
+	"github.com/nycu-ucr/logger_util"
+	openApiLogger "github.com/nycu-ucr/openapi/logger"
 )
 
 type AUSF struct{}

@@ -3,15 +3,16 @@ package consumer
 import (
 	"context"
 	"fmt"
-	"net/http"
 	"strings"
 	"time"
 
-	ausf_context "github.com/free5gc/ausf/context"
-	"github.com/free5gc/ausf/logger"
-	"github.com/free5gc/openapi"
-	"github.com/free5gc/openapi/Nnrf_NFManagement"
-	"github.com/free5gc/openapi/models"
+	"github.com/nycu-ucr/gonet/http"
+
+	ausf_context "github.com/nycu-ucr/ausf/context"
+	"github.com/nycu-ucr/ausf/logger"
+	"github.com/nycu-ucr/openapi"
+	"github.com/nycu-ucr/openapi/Nnrf_NFManagement"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func BuildNFInstance(ausfContext *ausf_context.AUSFContext) (profile models.NfProfile, err error) {
@@ -34,7 +35,8 @@ func BuildNFInstance(ausfContext *ausf_context.AUSFContext) (profile models.NfPr
 }
 
 // func SendRegisterNFInstance(nrfUri, nfInstanceId string, profile models.NfProfile) (resouceNrfUri string,
-//    retrieveNfInstanceID string, err error) {
+//
+//	retrieveNfInstanceID string, err error) {
 func SendRegisterNFInstance(nrfUri, nfInstanceId string, profile models.NfProfile) (string, string, error) {
 	configuration := Nnrf_NFManagement.NewConfiguration()
 	configuration.SetBasePath(nrfUri)

@@ -7,10 +7,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/free5gc/ausf/factory"
-	"github.com/free5gc/ausf/logger"
-	"github.com/free5gc/openapi/models"
 	"github.com/free5gc/path_util"
+	"github.com/nycu-ucr/ausf/factory"
+	"github.com/nycu-ucr/ausf/logger"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func TestInit() {

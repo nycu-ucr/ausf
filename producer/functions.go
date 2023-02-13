@@ -16,12 +16,12 @@ import (
 	"github.com/antihax/optional"
 	"github.com/bronze1man/radius"
 
-	"github.com/free5gc/ausf/consumer"
-	ausf_context "github.com/free5gc/ausf/context"
-	"github.com/free5gc/ausf/logger"
-	"github.com/free5gc/openapi/Nnrf_NFDiscovery"
-	Nudm_UEAU "github.com/free5gc/openapi/Nudm_UEAuthentication"
-	"github.com/free5gc/openapi/models"
+	"github.com/nycu-ucr/ausf/consumer"
+	ausf_context "github.com/nycu-ucr/ausf/context"
+	"github.com/nycu-ucr/ausf/logger"
+	"github.com/nycu-ucr/openapi/Nnrf_NFDiscovery"
+	Nudm_UEAU "github.com/nycu-ucr/openapi/Nudm_UEAuthentication"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func KDF5gAka(param ...string) hash.Hash {
@@ -136,7 +136,8 @@ func EapEncodeAttribute(attributeType string, data string) (string, error) {
 }
 
 // func eapAkaPrimePrf(ikPrime string, ckPrime string, identity string) (K_encr string, K_aut string, K_re string,
-//    MSK string, EMSK string) {
+//
+//	MSK string, EMSK string) {
 func eapAkaPrimePrf(ikPrime string, ckPrime string, identity string) (string, string, string, string, string) {
 	keyAp := ikPrime + ckPrime
 

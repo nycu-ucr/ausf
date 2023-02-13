@@ -7,19 +7,20 @@ import (
 	"encoding/hex"
 	"fmt"
 	"math/rand"
-	"net/http"
 	"strings"
 	"time"
+
+	"github.com/nycu-ucr/gonet/http"
 
 	"github.com/bronze1man/radius"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 
 	"github.com/free5gc/UeauCommon"
-	ausf_context "github.com/free5gc/ausf/context"
-	"github.com/free5gc/ausf/logger"
-	"github.com/free5gc/http_wrapper"
-	"github.com/free5gc/openapi/models"
+	ausf_context "github.com/nycu-ucr/ausf/context"
+	"github.com/nycu-ucr/ausf/logger"
+	"github.com/nycu-ucr/http_wrapper"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func HandleEapAuthComfirmRequest(request *http_wrapper.Request) *http_wrapper.Response {
@@ -81,7 +82,8 @@ func HandleUeAuthPostRequest(request *http_wrapper.Request) *http_wrapper.Respon
 }
 
 // func UeAuthPostRequestProcedure(updateAuthenticationInfo models.AuthenticationInfo) (
-//    response *models.UeAuthenticationCtx, locationURI string, problemDetails *models.ProblemDetails) {
+//
+//	response *models.UeAuthenticationCtx, locationURI string, problemDetails *models.ProblemDetails) {
 func UeAuthPostRequestProcedure(updateAuthenticationInfo models.AuthenticationInfo) (*models.UeAuthenticationCtx,
 	string, *models.ProblemDetails) {
 	var responseBody models.UeAuthenticationCtx
