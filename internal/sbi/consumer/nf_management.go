@@ -3,15 +3,15 @@ package consumer
 import (
 	"context"
 	"fmt"
-	"net/http"
+	"github.com/nycu-ucr/gonet/http"
 	"strings"
 	"time"
 
 	ausf_context "github.com/free5gc/ausf/internal/context"
 	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/openapi"
-	"github.com/free5gc/openapi/Nnrf_NFManagement"
-	"github.com/free5gc/openapi/models"
+	"github.com/nycu-ucr/openapi"
+	"github.com/nycu-ucr/openapi/Nnrf_NFManagement"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func BuildNFInstance(ausfContext *ausf_context.AUSFContext) (profile models.NfProfile, err error) {

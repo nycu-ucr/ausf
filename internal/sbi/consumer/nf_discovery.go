@@ -3,11 +3,11 @@ package consumer
 import (
 	"context"
 	"fmt"
-	"net/http"
+	"github.com/nycu-ucr/gonet/http"
 
 	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/openapi/Nnrf_NFDiscovery"
-	"github.com/free5gc/openapi/models"
+	"github.com/nycu-ucr/openapi/Nnrf_NFDiscovery"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func SendSearchNFInstances(nrfUri string, targetNfType, requestNfType models.NfType,
