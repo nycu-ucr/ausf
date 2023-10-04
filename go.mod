@@ -1,4 +1,4 @@
-module github.com/free5gc/ausf
+module github.com/nycu-ucr/ausf
 
 go 1.17
 
