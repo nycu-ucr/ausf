@@ -13,7 +13,7 @@ import (
 	"github.com/asaskevich/govalidator"
 
 	"github.com/free5gc/ausf/internal/logger"
-	"github.com/nycu-ucr/openapi/models"
+	"github.com/free5gc/openapi/models"
 )
 
 const (
@@ -57,6 +57,7 @@ type Configuration struct {
 	Sbi                  *Sbi            `yaml:"sbi,omitempty" valid:"required"`
 	ServiceNameList      []string        `yaml:"serviceNameList,omitempty" valid:"required"`
 	NrfUri               string          `yaml:"nrfUri,omitempty" valid:"url,required"`
+	NrfCertPem           string          `yaml:"nrfCertPem,omitempty" valid:"optional"`
 	PlmnSupportList      []models.PlmnId `yaml:"plmnSupportList,omitempty" valid:"required"`
 	GroupId              string          `yaml:"groupId,omitempty" valid:"type(string),minstringlength(1)"`
 	EapAkaSupiImsiPrefix bool            `yaml:"eapAkaSupiImsiPrefix,omitempty" valid:"type(bool),optional"`
@@ -152,8 +153,8 @@ func appendInvalid(err error) error {
 }
 
 func (c *Config) GetVersion() string {
-	c.RLock()
-	defer c.RUnlock()
+	c.RWMutex.RLock()
+	defer c.RWMutex.RUnlock()
 
 	if c.Info.Version != "" {
 		return c.Info.Version
@@ -162,8 +163,8 @@ func (c *Config) GetVersion() string {
 }
 
 func (c *Config) SetLogEnable(enable bool) {
-	c.Lock()
-	defer c.Unlock()
+	c.RWMutex.Lock()
+	defer c.RWMutex.Unlock()
 
 	if c.Logger == nil {
 		logger.CfgLog.Warnf("Logger should not be nil")
@@ -177,8 +178,8 @@ func (c *Config) SetLogEnable(enable bool) {
 }
 
 func (c *Config) SetLogLevel(level string) {
-	c.Lock()
-	defer c.Unlock()
+	c.RWMutex.Lock()
+	defer c.RWMutex.Unlock()
 
 	if c.Logger == nil {
 		logger.CfgLog.Warnf("Logger should not be nil")
@@ -191,8 +192,8 @@ func (c *Config) SetLogLevel(level string) {
 }
 
 func (c *Config) SetLogReportCaller(reportCaller bool) {
-	c.Lock()
-	defer c.Unlock()
+	c.RWMutex.Lock()
+	defer c.RWMutex.Unlock()
 
 	if c.Logger == nil {
 		logger.CfgLog.Warnf("Logger should not be nil")
@@ -206,8 +207,8 @@ func (c *Config) SetLogReportCaller(reportCaller bool) {
 }
 
 func (c *Config) GetLogEnable() bool {
-	c.RLock()
-	defer c.RUnlock()
+	c.RWMutex.RLock()
+	defer c.RWMutex.RUnlock()
 	if c.Logger == nil {
 		logger.CfgLog.Warnf("Logger should not be nil")
 		return false
@@ -216,8 +217,8 @@ func (c *Config) GetLogEnable() bool {
 }
 
 func (c *Config) GetLogLevel() string {
-	c.RLock()
-	defer c.RUnlock()
+	c.RWMutex.RLock()
+	defer c.RWMutex.RUnlock()
 	if c.Logger == nil {
 		logger.CfgLog.Warnf("Logger should not be nil")
 		return "info"
@@ -226,8 +227,8 @@ func (c *Config) GetLogLevel() string {
 }
 
 func (c *Config) GetLogReportCaller() bool {
-	c.RLock()
-	defer c.RUnlock()
+	c.RWMutex.RLock()
+	defer c.RWMutex.RUnlock()
 	if c.Logger == nil {
 		logger.CfgLog.Warnf("Logger should not be nil")
 		return false

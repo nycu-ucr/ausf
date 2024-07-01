@@ -3,7 +3,7 @@ package logger
 import (
 	"github.com/sirupsen/logrus"
 
-	logger_util "github.com/nycu-ucr/util/logger"
+	logger_util "github.com/free5gc/util/logger"
 )
 
 var (
@@ -18,6 +18,7 @@ var (
 	UeAuthLog    *logrus.Entry
 	Auth5gAkaLog *logrus.Entry
 	AuthELog     *logrus.Entry
+	UtilLog      *logrus.Entry
 )
 
 func init() {
@@ -37,4 +38,5 @@ func init() {
 	UeAuthLog = NfLog.WithField(logger_util.FieldCategory, "UeAuth")
 	Auth5gAkaLog = NfLog.WithField(logger_util.FieldCategory, "5gAka")
 	AuthELog = NfLog.WithField(logger_util.FieldCategory, "Eap")
+	UtilLog = NfLog.WithField(logger_util.FieldCategory, "Util")
 }

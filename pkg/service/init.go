@@ -15,8 +15,8 @@ import (
 	"github.com/free5gc/ausf/internal/sbi/consumer"
 	"github.com/free5gc/ausf/internal/sbi/ueauthentication"
 	"github.com/free5gc/ausf/pkg/factory"
-	"github.com/nycu-ucr/util/httpwrapper"
-	logger_util "github.com/nycu-ucr/util/logger"
+	"github.com/free5gc/util/httpwrapper"
+	logger_util "github.com/free5gc/util/logger"
 )
 
 type AusfApp struct {

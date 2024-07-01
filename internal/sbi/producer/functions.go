@@ -1,7 +1,6 @@
 package producer
 
 import (
-	"context"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/base64"
@@ -18,9 +17,9 @@ import (
 	ausf_context "github.com/free5gc/ausf/internal/context"
 	"github.com/free5gc/ausf/internal/logger"
 	"github.com/free5gc/ausf/internal/sbi/consumer"
-	"github.com/nycu-ucr/openapi/Nnrf_NFDiscovery"
-	Nudm_UEAU "github.com/nycu-ucr/openapi/Nudm_UEAuthentication"
-	"github.com/nycu-ucr/openapi/models"
+	"github.com/free5gc/openapi/Nnrf_NFDiscovery"
+	Nudm_UEAU "github.com/free5gc/openapi/Nudm_UEAuthentication"
+	"github.com/free5gc/openapi/models"
 )
 
 func KDF5gAka(param ...string) hash.Hash {
@@ -135,7 +134,7 @@ func EapEncodeAttribute(attributeType string, data string) (string, error) {
 }
 
 // func eapAkaPrimePrf(ikPrime string, ckPrime string, identity string) (K_encr string, K_aut string, K_re string,
-//    MSK string, EMSK string) {
+// MSK string, EMSK string) {
 func eapAkaPrimePrf(ikPrime string, ckPrime string, identity string) ([]byte, []byte, []byte, []byte, []byte) {
 	keyAp := ikPrime + ckPrime
 
@@ -372,7 +371,13 @@ func sendAuthResultToUDM(id string, authType models.AuthType, success bool, serv
 	authEvent.NfInstanceId = self.GetSelfID()
 
 	client := createClientToUdmUeau(udmUrl)
-	_, rsp, confirmAuthErr := client.ConfirmAuthApi.ConfirmAuth(context.Background(), id, authEvent)
+
+	ctx, _, err := ausf_context.GetSelf().GetTokenCtx(models.ServiceName_NUDM_UEAU, models.NfType_UDM)
+	if err != nil {
+		return err
+	}
+
+	_, rsp, confirmAuthErr := client.ConfirmAuthApi.ConfirmAuth(ctx, id, authEvent)
 	defer func() {
 		if rspCloseErr := rsp.Body.Close(); rspCloseErr != nil {
 			logger.ConsumerLog.Errorf("ConfirmAuth Response cannot close: %v", rspCloseErr)

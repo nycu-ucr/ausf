@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/nycu-ucr/util/ueauth"
+	"github.com/free5gc/util/ueauth"
 )
 
 type testEapAkaPrimeCase struct {
