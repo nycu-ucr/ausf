@@ -14,12 +14,12 @@ import (
 	"github.com/antihax/optional"
 	"github.com/bronze1man/radius"
 
-	ausf_context "github.com/free5gc/ausf/internal/context"
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/ausf/internal/sbi/consumer"
-	"github.com/free5gc/openapi/Nnrf_NFDiscovery"
-	Nudm_UEAU "github.com/free5gc/openapi/Nudm_UEAuthentication"
-	"github.com/free5gc/openapi/models"
+	ausf_context "github.com/nycu-ucr/ausf/internal/context"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/ausf/internal/sbi/consumer"
+	"github.com/nycu-ucr/openapi/Nnrf_NFDiscovery"
+	Nudm_UEAU "github.com/nycu-ucr/openapi/Nudm_UEAuthentication"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 func KDF5gAka(param ...string) hash.Hash {

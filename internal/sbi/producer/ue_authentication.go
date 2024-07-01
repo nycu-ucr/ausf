@@ -6,20 +6,21 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"math/rand"
-	"net/http"
 	"strings"
 	"time"
+
+	"github.com/nycu-ucr/gonet/http"
 
 	"github.com/bronze1man/radius"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
 
-	ausf_context "github.com/free5gc/ausf/internal/context"
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/ausf/pkg/factory"
-	"github.com/free5gc/openapi/models"
-	"github.com/free5gc/util/httpwrapper"
-	"github.com/free5gc/util/ueauth"
+	ausf_context "github.com/nycu-ucr/ausf/internal/context"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/ausf/pkg/factory"
+	"github.com/nycu-ucr/openapi/models"
+	"github.com/nycu-ucr/util/httpwrapper"
+	"github.com/nycu-ucr/util/ueauth"
 )
 
 func HandleEapAuthComfirmRequest(request *httpwrapper.Request) *httpwrapper.Response {

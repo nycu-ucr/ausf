@@ -15,11 +15,11 @@ import (
 
 	"github.com/urfave/cli"
 
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/ausf/pkg/factory"
-	"github.com/free5gc/ausf/pkg/service"
-	logger_util "github.com/free5gc/util/logger"
-	"github.com/free5gc/util/version"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/ausf/pkg/factory"
+	"github.com/nycu-ucr/ausf/pkg/service"
+	logger_util "github.com/nycu-ucr/util/logger"
+	"github.com/nycu-ucr/util/version"
 )
 
 var AUSF *service.AusfApp

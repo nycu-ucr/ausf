@@ -10,17 +10,18 @@
 package upuprotection
 
 import (
-	"net/http"
 	"strings"
 
-	"github.com/gin-gonic/gin"
+	"github.com/nycu-ucr/gonet/http"
 
-	ausf_context "github.com/free5gc/ausf/internal/context"
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/ausf/internal/util"
-	"github.com/free5gc/ausf/pkg/factory"
-	"github.com/free5gc/openapi/models"
-	logger_util "github.com/free5gc/util/logger"
+	"github.com/nycu-ucr/gin"
+
+	ausf_context "github.com/nycu-ucr/ausf/internal/context"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/ausf/internal/util"
+	"github.com/nycu-ucr/ausf/pkg/factory"
+	"github.com/nycu-ucr/openapi/models"
+	logger_util "github.com/nycu-ucr/util/logger"
 )
 
 // Route is the information for every URI.
