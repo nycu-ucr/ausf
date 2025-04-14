@@ -1,11 +1,13 @@
 package context
 
 import (
+	"context"
 	"regexp"
 	"sync"
 
 	"github.com/free5gc/ausf/internal/logger"
-	"github.com/nycu-ucr/openapi/models"
+	"github.com/free5gc/openapi/models"
+	"github.com/free5gc/openapi/oauth"
 )
 
 type AUSFContext struct {
@@ -19,11 +21,13 @@ type AUSFContext struct {
 	Url                  string
 	UriScheme            models.UriScheme
 	NrfUri               string
-	NfService            map[models.ServiceName]models.NfService
+	NrfCertPem           string
+	NfService            map[models.ServiceName]models.NrfNfManagementNfService
 	PlmnList             []models.PlmnId
 	UdmUeauUrl           string
 	snRegex              *regexp.Regexp
 	EapAkaSupiImsiPrefix bool
+	OAuth2Required       bool
 }
 
 type AusfUeContext struct {
@@ -31,7 +35,7 @@ type AusfUeContext struct {
 	Kausf              string
 	Kseaf              string
 	ServingNetworkName string
-	AuthStatus         models.AuthResult
+	AuthStatus         models.AusfUeAuthenticationAuthResult
 	UdmUeauUrl         string
 
 	// for 5G AKA
@@ -100,6 +104,12 @@ func Init() {
 	InitAusfContext(&ausfContext)
 }
 
+type NFContext interface {
+	AuthorizationCheck(token string, serviceName models.ServiceName) error
+}
+
+var _ NFContext = &AUSFContext{}
+
 func NewAusfUeContext(identifier string) (ausfUeContext *AusfUeContext) {
 	ausfUeContext = new(AusfUeContext)
 	ausfUeContext.Supi = identifier // supi
@@ -154,4 +164,24 @@ func GetSelf() *AUSFContext {
 
 func (a *AUSFContext) GetSelfID() string {
 	return a.NfId
+}
+
+func (c *AUSFContext) GetTokenCtx(serviceName models.ServiceName, targetNF models.NrfNfManagementNfType) (
+	context.Context, *models.ProblemDetails, error,
+) {
+	if !c.OAuth2Required {
+		return context.TODO(), nil, nil
+	}
+	return oauth.GetTokenCtx(models.NrfNfManagementNfType_AUSF, targetNF,
+		c.NfId, c.NrfUri, string(serviceName))
+}
+
+func (c *AUSFContext) AuthorizationCheck(token string, serviceName models.ServiceName) error {
+	if !c.OAuth2Required {
+		logger.UtilLog.Debugf("AUSFContext::AuthorizationCheck: OAuth2 not required\n")
+		return nil
+	}
+
+	logger.UtilLog.Debugf("AUSFContext::AuthorizationCheck: token[%s] serviceName[%s]\n", token, serviceName)
+	return oauth.VerifyOAuth(token, string(serviceName), c.NrfCertPem)
 }

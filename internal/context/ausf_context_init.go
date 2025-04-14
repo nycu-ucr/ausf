@@ -9,7 +9,7 @@ import (
 
 	"github.com/free5gc/ausf/internal/logger"
 	"github.com/free5gc/ausf/pkg/factory"
-	"github.com/nycu-ucr/openapi/models"
+	"github.com/free5gc/openapi/models"
 )
 
 func InitAusfContext(context *AUSFContext) {
@@ -22,6 +22,7 @@ func InitAusfContext(context *AUSFContext) {
 	context.NfId = uuid.New().String()
 	context.GroupID = configuration.GroupId
 	context.NrfUri = configuration.NrfUri
+	context.NrfCertPem = configuration.NrfCertPem
 	context.UriScheme = models.UriScheme(configuration.Sbi.Scheme) // default uri scheme
 	context.RegisterIPv4 = factory.AusfSbiDefaultIPv4              // default localhost
 	context.SBIPort = factory.AusfSbiDefaultPort                   // default port
@@ -55,15 +56,17 @@ func InitAusfContext(context *AUSFContext) {
 	context.PlmnList = append(context.PlmnList, configuration.PlmnSupportList...)
 
 	// context.NfService
-	context.NfService = make(map[models.ServiceName]models.NfService)
+	context.NfService = make(map[models.ServiceName]models.NrfNfManagementNfService)
 	AddNfServices(&context.NfService, config, context)
 	fmt.Println("ausf context = ", context)
 
 	context.EapAkaSupiImsiPrefix = configuration.EapAkaSupiImsiPrefix
 }
 
-func AddNfServices(serviceMap *map[models.ServiceName]models.NfService, config *factory.Config, context *AUSFContext) {
-	var nfService models.NfService
+func AddNfServices(
+	serviceMap *map[models.ServiceName]models.NrfNfManagementNfService, config *factory.Config, context *AUSFContext,
+) {
+	var nfService models.NrfNfManagementNfService
 	var ipEndPoints []models.IpEndPoint
 	var nfServiceVersions []models.NfServiceVersion
 	services := *serviceMap
@@ -85,7 +88,7 @@ func AddNfServices(serviceMap *map[models.ServiceName]models.NfService, config *
 	nfService.Scheme = context.UriScheme
 	nfService.NfServiceStatus = models.NfServiceStatus_REGISTERED
 
-	nfService.IpEndPoints = &ipEndPoints
-	nfService.Versions = &nfServiceVersions
+	nfService.IpEndPoints = ipEndPoints
+	nfService.Versions = nfServiceVersions
 	services[models.ServiceName_NAUSF_AUTH] = nfService
 }
