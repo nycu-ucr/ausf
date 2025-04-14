@@ -12,13 +12,13 @@
 package sbi
 
 import (
-	"net/http"
+	"github.com/nycu-ucr/gonet/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/nycu-ucr/gin"
 
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/openapi"
-	"github.com/free5gc/openapi/models"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/openapi"
+	"github.com/nycu-ucr/openapi/models"
 )
 
 // Index is the index handler.
@@ -33,7 +33,7 @@ func (s *Server) getUeAuthenticationRoutes() []Route {
 			Method:  http.MethodGet,
 			Pattern: "/",
 			APIFunc: func(c *gin.Context) {
-				c.String(http.StatusOK, "Hello free5GC!")
+				c.String(http.StatusOK, "Hello nycu-ucr!")
 			},
 		},
 		{

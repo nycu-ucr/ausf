@@ -4,10 +4,10 @@ import (
 	"sync"
 	"time"
 
-	ausf_context "github.com/free5gc/ausf/internal/context"
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/openapi/models"
-	Nudm_UEAU "github.com/free5gc/openapi/udm/UEAuthentication"
+	ausf_context "github.com/nycu-ucr/ausf/internal/context"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/openapi/models"
+	Nudm_UEAU "github.com/nycu-ucr/openapi/udm/UEAuthentication"
 )
 
 type nudmService struct {

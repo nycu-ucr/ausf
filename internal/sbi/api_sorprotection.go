@@ -1,9 +1,9 @@
 package sbi
 
 import (
-	"net/http"
+	"github.com/nycu-ucr/gonet/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/nycu-ucr/gin"
 )
 
 func (s *Server) getSorprotectionRoutes() []Route {
@@ -13,7 +13,7 @@ func (s *Server) getSorprotectionRoutes() []Route {
 			Method:  http.MethodGet,
 			Pattern: "/",
 			APIFunc: func(c *gin.Context) {
-				c.String(http.StatusOK, "Hello free5GC!")
+				c.String(http.StatusOK, "Hello nycu-ucr!")
 			},
 		},
 		{

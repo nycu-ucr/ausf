@@ -9,13 +9,13 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	ausf_context "github.com/free5gc/ausf/internal/context"
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/ausf/internal/sbi"
-	"github.com/free5gc/ausf/internal/sbi/consumer"
-	"github.com/free5gc/ausf/internal/sbi/processor"
-	"github.com/free5gc/ausf/pkg/app"
-	"github.com/free5gc/ausf/pkg/factory"
+	ausf_context "github.com/nycu-ucr/ausf/internal/context"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/ausf/internal/sbi"
+	"github.com/nycu-ucr/ausf/internal/sbi/consumer"
+	"github.com/nycu-ucr/ausf/internal/sbi/processor"
+	"github.com/nycu-ucr/ausf/pkg/app"
+	"github.com/nycu-ucr/ausf/pkg/factory"
 )
 
 var AUSF *AusfApp

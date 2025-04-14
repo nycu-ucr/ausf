@@ -10,21 +10,22 @@ import (
 	"fmt"
 	"hash"
 	"math/rand"
-	"net/http"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/nycu-ucr/gonet/http"
+
 	"github.com/bronze1man/radius"
-	"github.com/gin-gonic/gin"
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
+	"github.com/nycu-ucr/gin"
 
-	ausf_context "github.com/free5gc/ausf/internal/context"
-	"github.com/free5gc/ausf/internal/logger"
-	"github.com/free5gc/ausf/pkg/factory"
-	"github.com/free5gc/openapi/models"
-	"github.com/free5gc/util/ueauth"
+	ausf_context "github.com/nycu-ucr/ausf/internal/context"
+	"github.com/nycu-ucr/ausf/internal/logger"
+	"github.com/nycu-ucr/ausf/pkg/factory"
+	"github.com/nycu-ucr/openapi/models"
+	"github.com/nycu-ucr/util/ueauth"
 )
 
 func (p *Processor) HandleEapAuthComfirmRequest(c *gin.Context, eapSession models.EapSession, eapSessionId string) {
